@@ -2,10 +2,7 @@ package xyz.fragbots.sandboxcore.entitites
 
 import org.bukkit.Location
 import org.bukkit.Material
-import org.bukkit.entity.EntityType
-import org.bukkit.entity.Item
-import org.bukkit.entity.LivingEntity
-import org.bukkit.entity.Zombie
+import org.bukkit.entity.*
 import org.bukkit.inventory.ItemStack
 import org.bukkit.metadata.FixedMetadataValue
 import xyz.fragbots.sandboxcore.SandboxCore
@@ -74,15 +71,15 @@ abstract class SkyblockEntity(val name:String){
     }
 
     open fun load(entity:LivingEntity) {}
-    open fun damage(damage: Long) {
+    open fun damage(damage: Long, damagedBy: Player) {
         currentHealth = 0.toLong().coerceAtLeast(currentHealth - damage)
         entity?.customName = generateName()
         if(currentHealth==0.toLong()){
-            kill()
+            kill(damagedBy)
         }
     }
 
-    open fun kill() {
+    open fun kill(killedBy: Player) {
         val ent = entity ?: return
         SandboxCore.instance.entityManager.unRegisterEntity(ent.entityId)
         ent.health=0.0
