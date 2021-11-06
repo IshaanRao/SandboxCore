@@ -35,7 +35,7 @@ class DamageExecutor {
             }
             val finalDamage = damage.toLong()
             createDmgHolo(mob.location,finalDamage,event.isCrit)
-            damagee.damage(finalDamage)
+            damagee.damage(finalDamage,event.player)
             return finalDamage
         }
         return 0
@@ -65,7 +65,7 @@ class DamageExecutor {
             }
             val finalDamage = damage.toLong()
             createDmgHolo(mob.location,finalDamage,event.isCrit)
-            damagee.damage(finalDamage)
+            damagee.damage(finalDamage,event.player)
             return finalDamage
         }
         return 0
@@ -83,7 +83,7 @@ class DamageExecutor {
         if(!event.isCancelled){
             val damage = (event.baseAbilityDamage*event.multipler*event.enchantMultiplier).toLong()
             createDmgHolo(mob.location,damage,false)
-            damagee.damage(damage)
+            damagee.damage(damage,event.player)
             return damage
         }
         return 0
