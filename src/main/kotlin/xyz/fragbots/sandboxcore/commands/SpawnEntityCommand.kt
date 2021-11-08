@@ -10,9 +10,8 @@ import xyz.fragbots.sandboxcore.utils.player.PlayerExtensions.sendFormattedMessa
 
 class SpawnEntityCommand : Command("spawnentity") {
     init {
-        this.description = "Displays list of all items"
-        this.usageMessage = "/item"
-        this.aliases = listOf("items","i")
+        this.description = "Spawns an entity"
+        this.usageMessage = "/spawnentity"
     }
     override fun execute(sender: CommandSender, label: String, args: Array<out String>): Boolean {
         if(sender !is Player) return false

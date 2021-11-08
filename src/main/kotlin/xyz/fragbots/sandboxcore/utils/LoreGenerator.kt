@@ -209,7 +209,7 @@ class LoreGenerator(vararg val extraLore: String) {
         if(itemData.isDungeonItem()){
             lastLine += " DUNGEON"
         }
-        if(Utils.rarityToString(itemData.getItemType()).isNotBlank()){
+        if(Utils.itemTypeToString(itemData.getItemType()).isNotBlank()){
             lastLine += " ${Utils.itemTypeToString(itemData.getItemType())}"
         }
         finalLore.add(line, lastLine)

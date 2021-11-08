@@ -2,6 +2,9 @@ package xyz.fragbots.sandboxcore.items
 
 import org.bukkit.Bukkit
 import xyz.fragbots.sandboxcore.SandboxCore
+import xyz.fragbots.sandboxcore.items.misc.RemnantEye
+import xyz.fragbots.sandboxcore.items.misc.SleepingEye
+import xyz.fragbots.sandboxcore.items.misc.SummoningEye
 import xyz.fragbots.sandboxcore.items.weapons.Aote
 import xyz.fragbots.sandboxcore.items.weapons.GiantSword
 import xyz.fragbots.sandboxcore.items.weapons.Hyperion
@@ -21,6 +24,12 @@ class SkyblockItemFactory {
         registerItem(Aote())
         registerItem(JujuShortbow())
         registerItem(GiantSword())
+
+        //Misc
+
+        registerItem(SummoningEye())
+        registerItem(RemnantEye())
+        registerItem(SleepingEye())
     }
 
     fun registerItem(skyblockItem: SkyblockItem) {

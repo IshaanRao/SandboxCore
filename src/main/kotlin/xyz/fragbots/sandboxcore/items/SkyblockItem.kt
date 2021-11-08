@@ -32,13 +32,15 @@ abstract class SkyblockItem(val baseMat:Material,val itemName:String,val id:Stri
     open var ability2: SkyblockItemAbility? = null
     open var ability3: SkyblockItemAbility? = null
 
+    open val isHead = false
+    open val headTextureUrl = ""
 
     /*
         * Creates the item with all the default values
         * Code taken from KingRainbow44's repo
      */
     fun create(playerStats: PlayerStats):ItemStack{
-        val item: ItemStack = ItemStack(baseMat)
+        val item: ItemStack = if(isHead) Utils.getCustomSkull(headTextureUrl) else ItemStack(baseMat)
 
         val meta = item.itemMeta
         if (meta != null) {
