@@ -1,20 +1,32 @@
 package xyz.fragbots.sandboxcore.utils
 
+import com.mojang.authlib.GameProfile
+import com.mojang.authlib.properties.Property
+import org.apache.commons.codec.binary.Base64
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Location
+import org.bukkit.Material
 import org.bukkit.entity.ArmorStand
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
+import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.ItemMeta
 import org.bukkit.util.BlockIterator
 import xyz.fragbots.sandboxcore.SandboxCore
 import xyz.fragbots.sandboxcore.items.SkyblockConsts
+import xyz.fragbots.sandboxcore.utils.Reflections.getField
+import java.util.*
+
 
 /*
     * Main utlity class for the sandbox core.
     * A lot of code taken from: https://github.com/KingRainbow44/SkyblockSandbox/blob/main/src/main/java/tk/skyblocksandbox/skyblocksandbox/util/Utility.java
  */
 object Utils {
+
+    val base64 = Base64()
+
     fun rarityToColor(rarity: Int): ChatColor {
         return when (rarity) {
             SkyblockConsts.NONE, SkyblockConsts.COMMON -> ChatColor.WHITE
@@ -120,7 +132,28 @@ object Utils {
             return location
         }
     }
+
+    fun f(message: String) : String {
+        return format(message)
+    }
+
     fun format(message: String): String {
         return ChatColor.translateAlternateColorCodes('&',message)
+    }
+
+    fun getCustomSkull(url: String): ItemStack {
+        val profile = GameProfile(UUID.randomUUID(), null)
+        val propertyMap = profile.properties
+            ?: throw IllegalStateException("Profile doesn't contain a property map")
+        val encodedData: ByteArray = base64.encode(String.format("{textures:{SKIN:{url:\"%s\"}}}",
+            "http://textures.minecraft.net/texture/$url"
+        ).toByteArray())
+        propertyMap.put("textures", Property("textures", String(encodedData)))
+        val head = ItemStack(Material.SKULL_ITEM, 1, 3.toShort())
+        val headMeta: ItemMeta = head.getItemMeta()
+        val headMetaClass: Class<*> = headMeta.javaClass
+        getField(headMetaClass, "profile", GameProfile::class.java)[headMeta] = profile
+        head.itemMeta = headMeta
+        return head
     }
 }

@@ -11,7 +11,7 @@ class ChatListener : Listener {
     fun onAsyncChat(event: AsyncPlayerChatEvent){
         val player = event.player
         val pRank = player.getHighestRank()
+        event.message
         event.format = Utils.format("${pRank.prefix}${if(pRank.prefix.isNotEmpty()) " " else ""}${pRank.namecolor}${player.name}&f: ")+event.message
-        println("aaa")
     }
 }
