@@ -83,6 +83,7 @@ class SandboxCore : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(LogOutListener(), this)
         Bukkit.getPluginManager().registerEvents(TabPrefixListener(), this)
         Bukkit.getPluginManager().registerEvents(dynamicStatManager, this)
+        Bukkit.getPluginManager().registerEvents(AiListener(), this)
 
         logger.info("Registered Listeners")
     }
