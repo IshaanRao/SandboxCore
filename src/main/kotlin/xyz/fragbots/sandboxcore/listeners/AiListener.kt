@@ -43,7 +43,7 @@ data class Usage(
     val completion_tokens: Int,
     val total_tokens: Int
 )
-val startMessage = OpenAiMessage("system", "You are going to act as a classification model, I will give you a text and you need to respond to if a player wants an item that is the following, Hyperion ID: HYPERION, Aspect of the End ID: AOTE, Juju Shortbow ID: JUJUSHORTBOW, Giant's Sword ID: GIANTSWORD, Summoning Eye ID: SUMMONINGEYE, you will respond with one word which will either be the item they wants ID or NONE")
+val startMessage = OpenAiMessage("system", "You are going to act as a classification model, I will give you a text and you need to respond to if a player wants an item that is the following, Hyperion ID: HYPERION, Aspect of the End ID: AOTE, Juju Shortbow ID: JUJUSHORTBOW, Giant's Sword ID: GIANTSWORD, Summoning Eye ID: SUMMONINGEYE, Yeti Sword ID: YETISWORD, you will respond with one word which will either be the item they wants ID or NONE, please make sure you only classift as the item if the player actually requests for one not if they make a statement about it")
 
 class AiListener : Listener {
     @EventHandler

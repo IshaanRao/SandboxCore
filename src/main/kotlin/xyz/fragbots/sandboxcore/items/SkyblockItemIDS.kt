@@ -11,4 +11,5 @@ object SkyblockItemIDS {
     val SUMMONINGEYE = "SUMMONINGEYE"
     val REMNANTEYE = "REMNANTEYE"
     val SLEEPINGEYE = "SLEEPINGEYE"
+    val YETISWORD = "YETISWORD"
 }

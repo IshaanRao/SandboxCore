@@ -2,7 +2,9 @@ package xyz.fragbots.sandboxcore.utils.player
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat
+import org.bukkit.Location
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer
+import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import xyz.fragbots.sandboxcore.SandboxCore
@@ -30,7 +32,7 @@ object PlayerExtensions {
     }
 
     fun Player.getNearbySkyblockEntities(x:Double,y:Double,z:Double): ArrayList<SkyblockEntity> {
-        val entities = getNearbyEntities(x,y,z).filter {SandboxCore.instance.entityManager.isSkyblockEntity(it as LivingEntity)}
+        val entities = getNearbyEntities(x,y,z).filter { SandboxCore.instance.entityManager.isSkyblockEntity(it as Entity) }
         val sbEntities = ArrayList<SkyblockEntity>()
         entities.forEach {
             val sbEntity = SandboxCore.instance.entityManager.getSkyblockEntity(it as LivingEntity)
@@ -40,6 +42,19 @@ object PlayerExtensions {
         }
         return sbEntities
     }
+
+    fun Location.getNearbySkyblockEntities(x:Double,y:Double,z:Double): ArrayList<SkyblockEntity> {
+        val entities = world.getNearbyEntities(this, x,y,z).filter { SandboxCore.instance.entityManager.isSkyblockEntity(it as Entity) }
+        val sbEntities = ArrayList<SkyblockEntity>()
+        entities.forEach {
+            val sbEntity = SandboxCore.instance.entityManager.getSkyblockEntity(it as LivingEntity)
+            if(sbEntity!=null){
+                sbEntities.add(sbEntity)
+            }
+        }
+        return sbEntities
+    }
+
 
     fun Player.sendActionBarMessage(message: String) {
         val craftPlayer = (this as CraftPlayer)

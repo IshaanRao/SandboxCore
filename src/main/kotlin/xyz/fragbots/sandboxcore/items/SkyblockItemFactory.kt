@@ -5,10 +5,7 @@ import xyz.fragbots.sandboxcore.SandboxCore
 import xyz.fragbots.sandboxcore.items.misc.RemnantEye
 import xyz.fragbots.sandboxcore.items.misc.SleepingEye
 import xyz.fragbots.sandboxcore.items.misc.SummoningEye
-import xyz.fragbots.sandboxcore.items.weapons.Aote
-import xyz.fragbots.sandboxcore.items.weapons.GiantSword
-import xyz.fragbots.sandboxcore.items.weapons.Hyperion
-import xyz.fragbots.sandboxcore.items.weapons.JujuShortbow
+import xyz.fragbots.sandboxcore.items.weapons.*
 
 /*
  * Registers and manages all the skyblock item instances
@@ -24,6 +21,7 @@ class SkyblockItemFactory {
         registerItem(Aote())
         registerItem(JujuShortbow())
         registerItem(GiantSword())
+        registerItem(YetiSword())
 
         //Misc
 

@@ -1,7 +1,7 @@
 package xyz.fragbots.sandboxcore.entitites
 
+import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
-import javax.persistence.Entity
 
 class SkyblockEntityManager {
     val entities = HashMap<Int,SkyblockEntity>();
@@ -16,7 +16,8 @@ class SkyblockEntityManager {
         entities.remove(id)
     }
 
-    fun isSkyblockEntity(entity: LivingEntity):Boolean{
+    fun isSkyblockEntity(entity: Entity):Boolean{
+        if(entity !is LivingEntity) return false
         return entities.containsKey(entity.entityId)
     }
 
