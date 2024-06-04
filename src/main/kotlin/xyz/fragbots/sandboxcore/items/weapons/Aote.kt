@@ -12,6 +12,14 @@ import xyz.fragbots.sandboxcore.utils.player.PlayerStats
 
 
 class Aote : SkyblockItem(Material.DIAMOND_SWORD,"Aspect Of The End",SkyblockItemIDS.AOTE){
+    override var ability1:SkyblockItemAbility? = SkyblockItemAbility(
+        "Instant Tranismission","&6Item Ability: Instant Tranismission &e&lRIGHT CLICK",
+        "&7Teleport &a8 Blocks &7ahead of\n" +
+                "&7you and gain &a+50 &f✦ Speed&7\n" +
+                "&7for &a3 seconds&7.",
+        50,
+        0, 0, 0.0
+    )
 
     override fun getLore(playerStats: PlayerStats, itemStack: ItemStack?): Collection<String> {
         return LoreGenerator() //It has no
